@@ -18,11 +18,11 @@ function Header() {
           Find your nearest Health Care provider <br/> in just a few <span className="text-teal-500">clicks!</span></h1>
         <p className="flex justify-center text-sm mt-4">
           We're here to help you simplify the process and connect you with the
-          care you...
+          care you need...
         </p>
       </div>
       <div>
-        
+
       </div>
     </div>
   );
