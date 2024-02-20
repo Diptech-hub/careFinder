@@ -4,7 +4,7 @@ function About() {
   return (
     <div className="flex flex-row my-20 p-6 mx-10">
       <div className="w-1/2">
-        <strong className="text-2xl text-teal-500">About CareFinder</strong>
+        <strong className="text-2xl text-teal-500 text-center">About CareFinder</strong>
         <p className="flex justify-left text-sm mt-6 font-normal leading-6">
           At CareFinder, we understand the importance of accessible and quality
           healthcare, which is why we've dedicated ourselves to simplifying the
