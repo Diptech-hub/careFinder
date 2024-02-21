@@ -1,4 +1,4 @@
-import DropdownMenu from "./dropDown";
+import DropdownMenu from "./dropDown"
 
 function Header() {
   return (
