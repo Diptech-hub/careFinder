@@ -4,6 +4,7 @@ import Header from './components/header'
 import Footer from './components/footer'
 import About from './components/about'
 import Service from './components/service'
+import LoginPage from './components/login'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <About />
       <Service />
+      <LoginPage />
       <Footer />
     </>
   );
