@@ -5,6 +5,8 @@ import Footer from './components/footer'
 import About from './components/about'
 import Service from './components/service'
 import LoginPage from './components/login'
+import SignupPage from './components/singUp'
+import LoginnPage from './components/loginn'
 
 function App() {
 
@@ -14,6 +16,8 @@ function App() {
       <About />
       <Service />
       <LoginPage />
+      <LoginnPage />
+      <SignupPage />
       <Footer />
     </>
   );

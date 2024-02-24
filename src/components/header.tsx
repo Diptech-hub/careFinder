@@ -2,9 +2,9 @@ import DropdownMenu from "./dropDown"
 
 function Header() {
   return (
-    <div>
-      <div className="flex flex-row justify-between p-6 mx-10 ">
-        <strong className="text-2xl text-teal-500">CareFinder</strong>
+    <div className="">
+      <div className="flex flex-row justify-between p-6 mx-10">
+        <strong className="text-2xl text-teal-500 bg-inherit">CareFinder</strong>
         <div className="flex flex-row  gap-10 items-center">
           <a href="" className="hover:text-teal-500">
             Lorem
