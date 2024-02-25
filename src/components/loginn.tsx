@@ -31,9 +31,11 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-teal-500 text-2xl mb-4 font-bold">Login</h2>
+    <div className="flex justify-center items-center h-screen ">
+      <div className="shadow-md rounded px-24 pt-6 pb-8 mb-4 w-1/2">
+        <h2 className="text-teal-500 text-2xl mb-4 font-bold text-center">
+          Login
+        </h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <input
@@ -58,7 +60,7 @@ const LoginPage: React.FC = () => {
                 required
               />
               <button
-                className="text-teal-500 hover:text-teal-700 absolute right-0 top-0 mt-3 mr-4"
+                className="bg-inherit text-teal-500 hover:text-teal-700 absolute right-0 top-0 mt-3 mr-4"
                 type="button"
                 onClick={handleTogglePassword}
               >
@@ -76,17 +78,17 @@ const LoginPage: React.FC = () => {
         <div className="">
           <p className="text-center my-4">OR</p>
           <div className="">
-            <div className="ext-center">
-              <button className="bg-teal-500 hover:bg-teal-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/4">
-                <BiLogoGmail className="" />
+            <div className="flex flex-row justify-center gap-4">
+              <button className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/4">
+                <BiLogoGmail className="bg-inherit text-white" />
               </button>
-              <button className="bg-teal-500 hover:bg-teal-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/4">
-                <RiFacebookFill className="" />
+              <button className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/4">
+                <RiFacebookFill className="bg-inherit text-white" />
               </button>
             </div>
-            <p className="">
+            <p className="flex flex-row justify-center my-6 gap-4">
               Create an Account{" "}
-              <a href="" className="">
+              <a href="" className="text-blue-500 hover:text-blue-700">
                 Sign Up
               </a>
             </p>
