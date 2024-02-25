@@ -1,5 +1,6 @@
 import { useState } from "react";
-import LoginPage from "./login" 
+import { Link } from "react-router-dom";
+import LoginPage from "./login";
 
 const DropdownMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,12 +20,22 @@ const DropdownMenu = () => {
       </button>
       {isOpen && (
         <div className="dropdown-menu absolute z-10 mt-2 w-32">
-          <a href="" className="flex justify-center hover:bg-teal-700" onClick={LoginPage}>
-            Login
-          </a>
+          <Link className="link" to={`/Login`}>
+            <a
+              href=""
+              className="flex justify-center hover:bg-teal-700"
+              onClick={LoginPage}
+            >
+              Login
+            </a>
+          </Link>
+          <Link className="Link" to={`/Signup`}>
           <a href="" className="flex justify-center hover:bg-teal-700">
             Sign Up
           </a>
+          </Link>
+
+          
         </div>
       )}
     </div>

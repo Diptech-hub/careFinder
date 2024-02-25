@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RiFacebookFill } from "react-icons/ri";
 import { BiLogoGmail } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 interface SignUpFormData {
   userName: string;
@@ -37,8 +38,8 @@ const SignupPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen ">
-      <div className="shadow-md rounded px-24 pt-6 pb-8 mb-16 w-1/2">
+    <div className="flex justify-center items-center h-screen my-16 ">
+      <div className="shadow-md rounded px-24 pt-6 pb-8 my-16 w-1/2">
         <h2 className="text-teal-500 text-2xl mb-4 font-bold text-center">
           Sign Up
         </h2>
@@ -108,9 +109,11 @@ const SignupPage: React.FC = () => {
             </div>
             <p className="flex flex-row justify-center my-6 gap-4">
               Already have an Account{" "}
-              <a href="" className="text-blue-500 hover:text-blue-700">
-                Login
-              </a>
+              <Link to={`/Login`}>
+                <a href="" className="text-blue-500 hover:text-blue-700">
+                  Login
+                </a>
+              </Link>
             </p>
           </div>
         </div>

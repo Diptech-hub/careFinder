@@ -1,25 +1,20 @@
 // import { useState } from "react";
 // import "./styles/App.css";
-import Header from './components/header'
-import Footer from './components/footer'
-import About from './components/about'
-import Service from './components/service'
-import LoginPage from './components/login'
-import SignupPage from './components/singUp'
-import LoginnPage from './components/loginn'
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/home"
+import LoginPage from "./components/loginn"
+import SignupPage from "./components/singUp"
 
 function App() {
 
   return (
-    <>
-      <Header />
-      <About />
-      <Service />
-      <LoginPage />
-      <LoginnPage />
-      <SignupPage />
-      <Footer />
-    </>
+    <div className="App">
+      <Routes>
+      <Route exact path="/" element={<Home />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path= "/Signup" element={<SignupPage />}/>
+      </Routes>
+    </div>
   );
 }
 

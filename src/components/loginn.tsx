@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { RiFacebookFill } from "react-icons/ri";
 import { BiLogoGmail } from "react-icons/bi";
@@ -14,6 +15,7 @@ const LoginPage: React.FC = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -26,6 +28,13 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    // Check if password is correct
+    if (formData.password !== "correctpassword") {
+      setError("Incorrect Password or Email");
+      return;
+    }
+    // Clear error if password is correct
+    setError("");
     // Add login logic here
     console.log("Logging in...");
   };
@@ -36,6 +45,7 @@ const LoginPage: React.FC = () => {
         <h2 className="text-teal-500 text-2xl mb-4 font-bold text-center">
           Login
         </h2>
+        {error && <p className="text-center text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <input
@@ -88,9 +98,11 @@ const LoginPage: React.FC = () => {
             </div>
             <p className="flex flex-row justify-center my-6 gap-4">
               Create an Account{" "}
-              <a href="" className="text-blue-500 hover:text-blue-700">
-                Sign Up
-              </a>
+              <Link to={`/Signup`}>
+                <a href="" className="text-blue-500 hover:text-blue-700">
+                  Sign Up
+                </a>
+              </Link>
             </p>
           </div>
         </div>
