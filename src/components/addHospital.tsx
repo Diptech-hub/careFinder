@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Telephone from "../utils/phoneNumber"
+import Country from "../utils/region"
 
 interface hospitalData {
   name: string;
   address: string;
   phoneNumber: string;
   hospitalType: string;
-  image: string;
+  hospitalEmail: string;
 }
 
 const HospitalList: React.FC = () => {
@@ -15,7 +16,7 @@ const HospitalList: React.FC = () => {
     address: "",
     phoneNumber: "",
     hospitalType: "",
-    image: ""
+    hospitalEmail: "",
   });
   // submit form function
 //   const onSubmit = (e: any) => {
@@ -31,7 +32,7 @@ const HospitalList: React.FC = () => {
   return (
     <form>
       <div>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Hospital Name:</label>
         <input
           type="text"
           id="name"
@@ -41,7 +42,7 @@ const HospitalList: React.FC = () => {
         />
       </div>
       <div>
-        <label htmlFor="address">Address:</label>
+        <label htmlFor="address">Hospital Address:</label>
         <input
           type="text"
           id="address"
@@ -51,15 +52,10 @@ const HospitalList: React.FC = () => {
         />
       </div>
       <div>
-        {/* <label htmlFor="phoneNumber">Phone Number:</label>
-        <input
-          type="tel"
-          id="phoneNumber"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleInputChange}
-        /> */}
         <Telephone />
+      </div>
+      <div>
+        <Country />
       </div>
       <div>
         <label htmlFor="hospitalType">Hospital Type:</label>
@@ -72,12 +68,12 @@ const HospitalList: React.FC = () => {
         />
       </div>
       <div>
-        <label htmlFor="image">Image URL:</label>
+        <label htmlFor="hospitalEmail">Hospital Email</label>
         <input
-          type="text"
-          id="image"
-          name="image"
-          value={formData.image}
+          type="email"
+          id="hospitalEmail"
+          name="hospitalEmail"
+          value={formData.hospitalEmail}
           onChange={handleInputChange}
         />
       </div>
