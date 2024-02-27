@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Telephone from "../utils/phoneNumber"
-import Country from "../utils/region"
+import Telephone from "../utils/phoneNumber";
+import Country from "../utils/region";
+import MarkdownEditor from "../utils/markdown";
 
 interface hospitalData {
   name: string;
@@ -19,10 +20,10 @@ const HospitalList: React.FC = () => {
     hospitalEmail: "",
   });
   // submit form function
-//   const onSubmit = (e: any) => {
-//     e.preventDefault();
-//     console.log(formData);
-//   };
+  //   const onSubmit = (e: any) => {
+  //     e.preventDefault();
+  //     console.log(formData);
+  //   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -77,11 +78,12 @@ const HospitalList: React.FC = () => {
           onChange={handleInputChange}
         />
       </div>
+      <div>
+        <MarkdownEditor />
+      </div>
       <button type="submit">Submit</button>
     </form>
   );
 };
 
 export default HospitalList;
-
-
