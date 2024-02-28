@@ -10,12 +10,13 @@ function Telephone() {
   };
 
   return (
-    <div>
-      <label htmlFor="phone">Telephone Number:</label>
+    <div className="flex flex-col">
+      <label htmlFor="phone"  className="text-sm">Telephone Number:</label>
       <PhoneInput 
         placeholder="Enter phone number"
         value={phoneNumber}
         onChange={handlePhoneChange}
+        className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
       />
     </div>
   );
