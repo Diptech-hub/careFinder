@@ -49,12 +49,12 @@ const LoginPage: React.FC = () => {
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <input
-              className="border-b border-teal-500 focus:border-teal-700 py-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
               type="email"
               name="email"
               placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
+              className="border-b border-teal-500 focus:border-teal-700 py-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
               required
             />
           </div>

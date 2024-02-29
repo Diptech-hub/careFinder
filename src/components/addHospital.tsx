@@ -2,6 +2,8 @@ import { useState } from "react";
 import Telephone from "../utils/phoneNumber";
 import Country from "../utils/region";
 import MarkdownEditor from "../utils/markdown";
+import ImageUploader from "./image";
+import HealthCareSelect from "./healthCareSelect";
 
 interface hospitalData {
   name: string;
@@ -53,6 +55,7 @@ const HospitalList: React.FC = () => {
               value={formData.name}
               onChange={handleInputChange}
               className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
+              required
             />
           </div>
           <div className="flex flex-col">
@@ -66,19 +69,7 @@ const HospitalList: React.FC = () => {
               value={formData.address}
               onChange={handleInputChange}
               className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="hospitalType" className="text-sm">
-              Hospital Type
-            </label>
-            <input
-              type="text"
-              id="hospitalType"
-              name="hospitalType"
-              value={formData.hospitalType}
-              onChange={handleInputChange}
-              className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
+              required
             />
           </div>
           <div className="flex flex-col">
@@ -88,23 +79,34 @@ const HospitalList: React.FC = () => {
             <input
               type="text"
               id="hospitalEmail"
-              name="hospitalEmail" 
+              name="hospitalEmail"
               value={formData.hospitalEmail}
               onChange={handleInputChange}
               className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
+              required
             />
           </div>
           <div>
             <Telephone />
           </div>
+          <div className="flex flex-col">
+            <HealthCareSelect />
+          </div>
           <div>
             <Country />
           </div>
-
+          <div>
+            <ImageUploader />
+          </div>
           <div>
             <MarkdownEditor />
-          </div> 
-          <button type="submit" className="py-2 px-4 rounded my-4 bg-teal-500 text-white hover:bg-teal-700">Submit</button>
+          </div>
+          <button
+            type="submit"
+            className="py-2 px-4 rounded my-4 bg-teal-500 text-white hover:bg-teal-700"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>

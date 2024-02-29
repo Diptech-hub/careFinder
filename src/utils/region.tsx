@@ -29,12 +29,14 @@ const Example: React.FC = () => {
         value={country}
         onChange={(val) => selectCountry(val)}
         className= "text-sm border border-teal-500 focus:border-teal-700 my-4 py-2 w-3/4 focus:outline-none rounded"
+        required
       />
       <RegionDropdown
         country={country}
         value={region}
         onChange={(val) => selectRegion(val)}
         className= "text-sm border border-teal-500 focus:border-teal-700 my-4 py-2 w-3/4 focus:outline-none rounded"
+        required
       />
       {country && states.length > 0 && (
         <select

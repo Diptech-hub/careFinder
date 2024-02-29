@@ -17,6 +17,7 @@ function Telephone() {
         value={phoneNumber}
         onChange={handlePhoneChange}
         className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
+        required
       />
     </div>
   );
