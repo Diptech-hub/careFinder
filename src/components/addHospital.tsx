@@ -1,10 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Telephone from "../utils/phoneNumber";
 import Country from "../utils/region";
 import MarkdownEditor from "../utils/markdown";
 import ImageUploader from "./image";
 import HealthCareSelect from "./healthCareSelect";
 import Pagination from "./pagination";
+// import firebase from "firebase/compat/app";
+import "firebase/firestore";
+import firebase from "firebase/compat/app";
 
 interface hospitalData {
   name: string;
@@ -22,15 +25,29 @@ const HospitalList: React.FC = () => {
     hospitalType: "",
     hospitalEmail: "",
   });
-  
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      console.log(formData);
-    };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Store form data in Firestore
+    await storeFormData(formData);
+  };
+
+  const db = firebase.firestore();
+
+  const storeFormData = async (formData: hospitalData) => {
+    try {
+      await db.collection("formResponses").add(formData);
+      console.log("Form data stored successfully!");
+    } catch (error) {
+      console.error("Error storing form data:", error);
+    }
+  };
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };

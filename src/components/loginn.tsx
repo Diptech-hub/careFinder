@@ -46,7 +46,7 @@ const LoginPage: React.FC = () => {
         {/* {error && <p className="text-center text-red-500 mb-4">{error}</p>} */}
         <div className="mb-4">
           <input
-            type="text"
+            type="email"
             value={user.email}
             onChange={(e) =>
               setUser((state) => ({ ...state, email: e.target.value }))
