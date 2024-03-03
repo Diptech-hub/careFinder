@@ -1,40 +1,46 @@
 import React, { useState } from "react";
 import { RiFacebookFill } from "react-icons/ri";
 import { BiLogoGmail } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { auth } from "../utils/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate, Link } from "react-router-dom";
 
-interface SignUpFormData {
-  userName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+// interface SignUpFormData {
+//   userName: string;
+//   email: string;
+//   password: string;
+//   confirmPassword: string;
+// }
 
 const SignupPage: React.FC = () => {
-  const [formData, setFormData] = useState<SignUpFormData>({
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [user, setUser] = useState({
     userName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
-  const [error, setError] = useState<string>("");
+  // const [error, setError] = useState<string>("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
-  const handleSignup = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-    // Clear error if passwords match
-    setError("");
-    // Add signup logic here
-    console.log("Signing up...");
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+
+    await createUserWithEmailAndPassword(auth, user.email, user.password)
+      .then(() => {
+        navigate("/addHospital");
+      })
+      .catch((error) => alert(error.message))
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -43,59 +49,57 @@ const SignupPage: React.FC = () => {
         <h2 className="text-teal-500 text-2xl mb-4 font-bold text-center">
           Sign Up
         </h2>
-        {error && <p className="text-center text-red-500 mb-4">{error}</p>}
-        <form onSubmit={handleSignup}>
-          <div className="mb-4">
+        <div className="mb-4">
+          <input
+            type="text"
+            value={user.userName}
+            placeholder="Admin Name"
+            onChange={(e) =>
+              setUser((state) => ({ ...state, userName: e.target.value }))
+            }
+            className="border-b border-teal-500 focus:border-teal-700 py-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <input
+            type="text"
+            value={user.email}
+            onChange={(e) =>
+              setUser((state) => ({ ...state, email: e.target.value }))
+            }
+            placeholder="Email"
+            className="border-b border-teal-500 focus:border-teal-700 py-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <div className="relative">
             <input
-              type="text"
-              name="userName"
-              placeholder="Admin Name"
-              value={formData.userName}
-              onChange={handleInputChange}
-              className="border-b border-teal-500 focus:border-teal-700 py-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="border-b border-teal-500 focus:border-teal-700 py-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
-              required
-            />
-          </div>
-          <div className="mb-4 relative">
-            <input
-              type="password"
-              name="password"
+              value={user.password}
+              onChange={(e) =>
+                setUser((state) => ({ ...state, password: e.target.value }))
+              }
+              className="border-b border-teal-500 focus:border-teal-700 pb-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className="border-b border-teal-500 focus:border-teal-700 py-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
               required
             />
+            <button
+              className="bg-inherit text-teal-500 hover:text-teal-700 absolute right-0 top-0 mt-3 mr-4"
+              type="button"
+              onClick={handleTogglePassword}
+            >
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </button>
           </div>
-          <div className="mb-4 relative">
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              className="border-b border-teal-500 focus:border-teal-700 py-2 px-3 w-full my-2 text-grey-700 focus:outline-none focus:shadow-outline"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-          >
-            Sign Up
-          </button>
-        </form>
+        </div>
+        <button
+          onClick={handleSubmit}
+          className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+        >
+          {isSubmitting ? "Signing up..." : "Sign up"}
+        </button>
         <div className="">
           <p className="text-center my-4">OR</p>
           <div className="">
