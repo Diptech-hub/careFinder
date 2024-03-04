@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
 interface HealthCareTypeDropdownProps {
-  onSelect: (value: string) => void;
+  onChange: (value: string) => void;
 }
 
 const HealthCareTypeDropdown: React.FC<HealthCareTypeDropdownProps> = ({
-  onSelect,
+  onChange,
 }) => {
   const [selectedType, setSelectedType] = useState<string>("");
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setSelectedType(value);
-    onSelect(value);
+    onChange(value); 
   };
 
   return (

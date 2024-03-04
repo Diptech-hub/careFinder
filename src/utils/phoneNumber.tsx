@@ -1,26 +1,32 @@
 import PhoneInput from "react-phone-number-input";
-import  "../styles/phoneNumber.css"
-import { useState } from "react";
+import "react-phone-number-input/style.css";
+import "../styles/phoneNumber.css";
+import React from "react";
 
-function Telephone() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+interface TelephoneProps {
+  value: string;
+  onChange: (value: string) => void;
+}
 
-  const handlePhoneChange = (value: string) => {
-    setPhoneNumber(value);
+const Telephone: React.FC<TelephoneProps> = ({ value, onChange }) => {
+  const handleInputChange = (phoneNumber: string) => {
+    onChange(phoneNumber); 
   };
 
   return (
     <div className="flex flex-col">
-      <label htmlFor="phone"  className="text-sm">Telephone Number:</label>
-      <PhoneInput 
+      <label htmlFor="phone" className="text-sm">
+        Telephone Number:
+      </label>
+      <PhoneInput
         placeholder="Enter phone number"
-        value={phoneNumber}
-        onChange={handlePhoneChange}
+        value={value}
+        onChange={handleInputChange}
         className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
         required
       />
     </div>
   );
-}
+};
 
 export default Telephone;

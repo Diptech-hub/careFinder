@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-const MarkdownEditor: React.FC = () => {
+interface MarkdownEditorProps {
+  onChange: (markdown: string) => void;
+}
+
+const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ onChange }) => {
   const [markdown, setMarkdown] = useState<string>("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMarkdown(event.target.value);
+    const updatedMarkdown = event.target.value;
+    setMarkdown(updatedMarkdown);
+    onChange(updatedMarkdown); // Notify parent component about the change
   };
 
   return (
@@ -61,13 +67,12 @@ const MarkdownEditor: React.FC = () => {
           </button>
         </div>
         <div>
-        <h2 className="text-sm mb-2">Preview</h2>
-        <div className="border border-teal-500 rounded px-3 py-2 w-3/4">
-          <ReactMarkdown>{markdown}</ReactMarkdown>
+          <h2 className="text-sm mb-2">Preview</h2>
+          <div className="border border-teal-500 rounded px-3 py-2 w-3/4">
+            <ReactMarkdown>{markdown}</ReactMarkdown>
+          </div>
         </div>
       </div>
-      </div>
-      
     </div>
   );
 };

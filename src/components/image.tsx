@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-const FileUpload: React.FC = () => {
+interface FileUploadProps {
+  onChange: (files: File[]) => void;
+}
+
+const FileUpload: React.FC<FileUploadProps> = ({ onChange }) => {
   const [files, setFiles] = useState<File[]>([]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -8,6 +12,7 @@ const FileUpload: React.FC = () => {
     if (fileList) {
       const updatedFiles: File[] = Array.from(fileList);
       setFiles([...files, ...updatedFiles]);
+      onChange([...files, ...updatedFiles]); // Notify parent component about the change
     }
   };
 
@@ -15,6 +20,7 @@ const FileUpload: React.FC = () => {
     const updatedFiles = [...files];
     updatedFiles.splice(index, 1);
     setFiles(updatedFiles);
+    onChange(updatedFiles); // Notify parent component about the change
   };
 
   return (

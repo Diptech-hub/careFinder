@@ -12,24 +12,40 @@ import firebase from "firebase/compat/app";
 interface hospitalData {
   name: string;
   address: string;
-  phoneNumber: string;
   hospitalType: string;
   hospitalEmail: string;
+  markdown: string;
+  country: string;
+  image: string;
+  telephone: string;
 }
 
 const HospitalList: React.FC = () => {
   const [formData, setFormData] = useState<hospitalData>({
     name: "",
     address: "",
-    phoneNumber: "",
     hospitalType: "",
     hospitalEmail: "",
+    markdown: "",
+    country: "",
+    image: "",
+    telephone: "",
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Store form data in Firestore
-    await storeFormData(formData);
+    // Check if all required fields are filled, including markdown
+    if (
+      formData.name &&
+      formData.address &&
+      formData.hospitalEmail &&
+      formData.telephone &&
+      formData.markdown
+    ) {
+      await storeFormData(formData);
+    } else {
+      alert("Please fill in all required fields.");
+    }
   };
 
   const db = firebase.firestore();
@@ -54,6 +70,22 @@ const HospitalList: React.FC = () => {
 
   const onPageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handlePhoneChange = (telephone: string) => {
+    setFormData({ ...formData, telephone });
+  };
+
+  const handleCountryChange = (country: string) => {
+    setFormData({ ...formData, country });
+  };
+
+  const handleImageUpload = (image: string) => {
+    setFormData({ ...formData, image });
+  };
+
+  const handleMarkdownChange = (markdown: string) => {
+    setFormData({ ...formData, markdown });
   };
 
   return (
@@ -117,23 +149,29 @@ const HospitalList: React.FC = () => {
           {currentPage === 2 && (
             <>
               <div>
-                <Telephone />
+                <Telephone onChange={handlePhoneChange} value={"value"} />
               </div>
               <div className="flex flex-col">
                 <HealthCareSelect />
               </div>
               <div>
-                <Country />
+                <Country onChange={handleCountryChange} />
               </div>
               <div>
-                <ImageUploader />
+                <ImageUploader
+                  onChange={function (): void {
+                    {
+                      handleImageUpload;
+                    }
+                  }}
+                />
               </div>
             </>
           )}
           {currentPage === 3 && (
             <>
               <div>
-                <MarkdownEditor />
+                <MarkdownEditor onChange={handleMarkdownChange} />
               </div>
               <button
                 type="submit"

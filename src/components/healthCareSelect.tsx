@@ -10,7 +10,7 @@ const HealthCareSelect: React.FC = () => {
 
   return (
     <div>
-      <HealthCareTypeDropdown onSelect={handleSelect} />
+      <HealthCareTypeDropdown onChange={handleSelect} />
       {selectedType && (
         <p className="hidden">Selected Health Care Type: {selectedType}</p>
       )}

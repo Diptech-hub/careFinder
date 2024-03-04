@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
-const Example: React.FC = () => {
-  const [country, setCountry] = useState<string>('');
-  const [region, setRegion] = useState<string>('');
+interface ExampleProps {
+  initialValue?: {
+    country: string;
+    region: string;
+  };
+  onChange?: (country: string, region: string) => void;
+}
+
+const Example: React.FC<ExampleProps> = ({ initialValue, onChange }) => {
+  const [country, setCountry] = useState<string>(initialValue?.country || '');
+  const [region, setRegion] = useState<string>(initialValue?.region || '');
   const [states, setStates] = useState<string[]>([]);
 
   const selectCountry = (val: string) => {
@@ -17,10 +25,16 @@ const Example: React.FC = () => {
       setStates([]);
       setRegion('');
     }
+    if (onChange) {
+      onChange(val, '');
+    }
   };
 
   const selectRegion = (val: string) => {
     setRegion(val);
+    if (onChange) {
+      onChange(country, val);
+    }
   };
 
   return (
@@ -28,14 +42,14 @@ const Example: React.FC = () => {
       <CountryDropdown
         value={country}
         onChange={(val) => selectCountry(val)}
-        className= "text-sm border border-teal-500 focus:border-teal-700 my-4 py-2 w-3/4 focus:outline-none rounded"
+        className="text-sm border border-teal-500 focus:border-teal-700 my-4 py-2 w-3/4 focus:outline-none rounded"
         required
       />
       <RegionDropdown
         country={country}
         value={region}
         onChange={(val) => selectRegion(val)}
-        className= "text-sm border border-teal-500 focus:border-teal-700 my-4 py-2 w-3/4 focus:outline-none rounded"
+        className="text-sm border border-teal-500 focus:border-teal-700 my-4 py-2 w-3/4 focus:outline-none rounded"
         required
       />
       {country && states.length > 0 && (
