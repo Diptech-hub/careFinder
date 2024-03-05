@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
-import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+import React, { useState } from "react";
+import {
+  CountryDropdown,
+  RegionDropdown,
+  CountryRegionData,
+} from "react-country-region-selector";
 
 interface ExampleProps {
   initialValue?: {
@@ -10,30 +14,32 @@ interface ExampleProps {
 }
 
 const Example: React.FC<ExampleProps> = ({ initialValue, onChange }) => {
-  const [country, setCountry] = useState<string>(initialValue?.country || '');
-  const [region, setRegion] = useState<string>(initialValue?.region || '');
+  const [country, setCountry] = useState<string>(initialValue?.country || "");
+  const [region, setRegion] = useState<string>(initialValue?.region || "");
   const [states, setStates] = useState<string[]>([]);
 
   const selectCountry = (val: string) => {
     setCountry(val);
-    const selectedCountryData = CountryRegionData[val as keyof typeof CountryRegionData];
+    const selectedCountryData =
+      CountryRegionData[val as keyof typeof CountryRegionData];
     if (selectedCountryData) {
-      const selectedCountryRegions = selectedCountryData[region as keyof typeof selectedCountryData];
+      const selectedCountryRegions =
+        selectedCountryData[region as keyof typeof selectedCountryData];
       setStates(selectedCountryRegions || []);
-      setRegion('');
+      setRegion("");
     } else {
       setStates([]);
-      setRegion('');
+      setRegion("");
     }
     if (onChange) {
-      onChange(val, '');
+      onChange(val, ""); // Reset region value when country changes
     }
   };
 
   const selectRegion = (val: string) => {
     setRegion(val);
     if (onChange) {
-      onChange(country, val);
+      onChange(country, val); // Pass selected country and region values to onChange prop
     }
   };
 

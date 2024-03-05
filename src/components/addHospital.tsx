@@ -3,7 +3,7 @@ import Telephone from "../utils/phoneNumber";
 import Country from "../utils/region";
 import MarkdownEditor from "../utils/markdown";
 import ImageUploader from "./image";
-import HealthCareSelect from "./healthCareSelect";
+import Dropdown from "./healthCare";
 import Pagination from "./pagination";
 // import firebase from "firebase/compat/app";
 import "firebase/firestore";
@@ -12,24 +12,27 @@ import firebase from "firebase/compat/app";
 interface hospitalData {
   name: string;
   address: string;
-  hospitalType: string;
   hospitalEmail: string;
   markdown: string;
   country: string;
+  region: string;
   image: string;
   telephone: string;
+  healthCare: string;
 }
 
 const HospitalList: React.FC = () => {
   const [formData, setFormData] = useState<hospitalData>({
     name: "",
     address: "",
-    hospitalType: "",
     hospitalEmail: "",
     markdown: "",
     country: "",
+    region: "",
+    // image: null as File | null,
     image: "",
     telephone: "",
+    healthCare: "",
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -76,8 +79,12 @@ const HospitalList: React.FC = () => {
     setFormData({ ...formData, telephone });
   };
 
-  const handleCountryChange = (country: string) => {
-    setFormData({ ...formData, country });
+  const handleCountryChange = (country: string, region: string) => {
+    setFormData({ ...formData, country, region });
+  };
+
+  const handleHealthCareChange = (healthCare: string) => {
+    setFormData({ ...formData, healthCare });
   };
 
   const handleImageUpload = (image: string) => {
@@ -152,7 +159,7 @@ const HospitalList: React.FC = () => {
                 <Telephone onChange={handlePhoneChange} value={"value"} />
               </div>
               <div className="flex flex-col">
-                <HealthCareSelect />
+                <Dropdown onChange={handleHealthCareChange} />
               </div>
               <div>
                 <Country onChange={handleCountryChange} />

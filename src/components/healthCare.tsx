@@ -1,38 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 
-interface HealthCareTypeDropdownProps {
-  onChange: (value: string) => void;
+interface DropdownProps {
+  onChange: (selectedValue: string) => void;
 }
 
-const HealthCareTypeDropdown: React.FC<HealthCareTypeDropdownProps> = ({
-  onChange,
-}) => {
-  const [selectedType, setSelectedType] = useState<string>("");
+const Dropdown: React.FC<DropdownProps> = ({ onChange }) => {
+  const options = [
+    "Hospital",
+    "Optician",
+    "Dentist",
+    "Dermatologist",
+    "Maternity Home",
+    "Others",
+  ];
 
-  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    setSelectedType(value);
-    onChange(value); 
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onChange(e.target.value);
   };
 
   return (
     <div className="flex flex-col space-y-4">
       <select
-        id="healthCareType"
-        value={selectedType}
-        onChange={handleSelect}
+        onChange={handleSelectChange}
         className="text-sm border border-teal-500 focus:border-teal-700 my-4 py-2 w-3/4 focus:outline-none rounded"
-        required
       >
-        <option value="">Select Health Care Type</option>
-        <option value="hospital">Hospital</option>
-        <option value="optician">Optician</option>
-        <option value="dentist">Dentist</option>
-        <option value="maternity">Maternity Home</option>
-        <option value="others">Others</option>
+        <option value="">Select an option</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </select>
     </div>
   );
 };
 
-export default HealthCareTypeDropdown;
+export default Dropdown;
