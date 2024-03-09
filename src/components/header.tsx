@@ -1,4 +1,5 @@
 import DropdownMenu from "./dropDown"
+import { Link } from  'react-router-dom'
 
 
 function Header() {
@@ -38,9 +39,11 @@ function Header() {
           placeholder="Search by Name, Address or Specialty..."
           className="w-96 px-4 py-2 rounded-md border border-teal-300 focus:outline-none focus:ring focus:border-teal-500 "
         />
+        <Link to="/search">
         <button className="py-2 px-4 rounded mx-4 bg-teal-500 text-white hover:bg-teal-700">
           Search
         </button>
+        </Link>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import LoginPage from "./components/loginn";
 import SignupPage from "./components/singUp";
 import HospitalList from "./components/addHospital";
 import FirestoreDataPage from "./components/adminHospitalList"
+import SearchBar from "./components/userHospitalList"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Signup" element={<SignupPage />} />
         <Route path="/addHospital" element={<HospitalList />} />
         <Route path="/data/:id" element={<FirestoreDataPage />} />
+        <Route path="/search" element={<SearchBar />} />
       </Routes>
     </div>
   );

@@ -27,7 +27,7 @@ const AllHospitalData: React.FC = () => {
         const data: HospitalData[] = [];
         snapshot.forEach((doc) => {
           const docData = doc.data() as HospitalData;
-          data.push({ ...docData });
+          data.push({  ...docData });
         });
         setHospitalData(data);
       } catch (error) {
