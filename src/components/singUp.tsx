@@ -37,7 +37,7 @@ const SignupPage: React.FC = () => {
 
     await createUserWithEmailAndPassword(auth, user.email, user.password)
       .then(() => {
-        navigate("/addHospital");
+        navigate("/data/:id");
       })
       .catch((error) => alert(error.message))
       .finally(() => setIsSubmitting(false));

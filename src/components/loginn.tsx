@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
 
     await signInWithEmailAndPassword(auth, user.email, user.password)
       .then(() => {
-        navigate("/addHospital");
+        navigate("/data/:id");
       })
       .catch((error) => alert(error.message))
       .finally(() => setIsSubmitting(false));
