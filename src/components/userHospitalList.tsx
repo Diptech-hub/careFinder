@@ -61,6 +61,7 @@ const SearchBar: React.FC = () => {
 
   const filteredResults = searchResults.filter(
     (result) =>
+      result.region.toLowerCase().includes(searchQuery.toLowerCase()) ||
       result.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       result.address.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -81,22 +82,51 @@ const SearchBar: React.FC = () => {
     link.click();
   };
 
+  const shareDataViaEmail = async () => {
+    try {
+      // Fetch data from Firestore
+      const db = firebase.firestore();
+      const querySnapshot = await db.collection("formResponses").get();
+      const data = querySnapshot.docs.map((doc) => doc.data());
+  
+      // Construct shareable link with encoded data
+      const encodedData = encodeURIComponent(JSON.stringify(data));
+      const shareableLink = `https://example.com/share?data=${encodedData}`;
+  
+      // Open default email client with pre-filled email containing shareable link
+      window.location.href = `mailto:?subject=Shared Hospital Data&body=Here is the link to view hospital data: ${shareableLink}`;
+    } catch (error) {
+      console.error("Error sharing data via email:", error);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <input
         type="text"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => {
+          e.preventDefault(); // Prevent default form submission
+          setSearchQuery(e.target.value);
+        }}
         placeholder="Enter name of Health Care, state, address, ..."
         className="border border-gray-300 rounded px-4 py-2 w-full mb-4"
       />
 
-      <button
-        onClick={downloadCSV}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Export Health Care
-      </button>
+<div className="flex mb-4">
+        <button
+          onClick={downloadCSV}
+          className="mr-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Export Health Care
+        </button>
+        <button
+          onClick={shareDataViaEmail}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Share via Email
+        </button>
+      </div>
 
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
