@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { FaDownload } from "react-icons/fa";
+import { IoIosShareAlt } from "react-icons/io";
 
 interface HospitalData {
   id: string;
@@ -123,15 +125,15 @@ const SearchBar: React.FC = () => {
       <div className="flex my-4 justify-end mx-12">
         <button
           onClick={downloadCSV}
-          className="mr-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm"
+          className="mr-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
         >
-          Export Health Care
+         <FaDownload className="bg-inherit relative top-0.5 right-1 text-lg"/> Export Health Care
         </button>
         <button
           onClick={shareDataViaEmail}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
         >
-          Share via Email
+         <IoIosShareAlt className="bg-inherit relative top-0.5 right-1 text-lg"/> Share via Email
         </button>
       </div>
 

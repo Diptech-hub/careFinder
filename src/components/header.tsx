@@ -1,12 +1,14 @@
-import DropdownMenu from "./dropDown"
-import { Link } from  'react-router-dom'
-
+import DropdownMenu from "./dropDown";
+import { Link } from "react-router-dom";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 function Header() {
   return (
     <div className="">
       <div className="flex flex-row justify-between p-6 mx-10">
-        <strong className="text-2xl text-teal-500 bg-inherit">CareFinder</strong>
+        <strong className="text-2xl text-teal-500 bg-inherit">
+          CareFinder
+        </strong>
         <div className="flex flex-row  gap-10 items-center">
           <a href="" className="hover:text-teal-500">
             Lorem
@@ -33,16 +35,13 @@ function Header() {
           care you need...
         </p>
       </div>
-      <div className="flex justify-center mt-10">
-        <input
-          type="text"
-          placeholder="Search by Name, Address or Specialty..."
-          className="w-96 px-4 py-2 rounded-md border border-teal-300 focus:outline-none focus:ring focus:border-teal-500 "
-        />
+      <div className="flex flex-row justify-center mt-10">
         <Link to="/search">
-        <button className="py-2 px-4 rounded mx-4 bg-teal-500 text-white hover:bg-teal-700">
-          Search
-        </button>
+          <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-lg font-medium text-white-900 rounded-lg group bg-gradient-to-br from-teal-500 to-teal-700 group-hover:from-teal-400 group-hover:to-teal-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none "> 
+            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-teal-500 rounded-md group-hover:bg-opacity-0 inline-flex">
+            Get Started  <FaLongArrowAltRight className="bg-inherit relative top-1.5 left-2 text-lg"/>
+            </span>  
+          </button>
         </Link>
       </div>
     </div>

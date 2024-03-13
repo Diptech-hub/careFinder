@@ -8,6 +8,7 @@ import HospitalList from "./components/addHospital";
 import FirestoreDataPage from "./components/adminHospitalList"
 import SearchBar from "./components/userHospitalList"
 
+
 function App() {
   return (
     <div className="App">
@@ -24,3 +25,4 @@ function App() {
 }
 
 export default App;
+
