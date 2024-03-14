@@ -88,14 +88,11 @@ const AllHospitalData: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-row mx-6 px-4 justify-between mb-6">
-        <div className="flex flex-row">
-          {" "}
-          <FaHospitalUser className="relative text-teal-500 top-1 text-2xl" />
-          <strong className="text-2xl text-teal-500 pl-4">
-            {" "}
-            Admin Dashboard
-          </strong>
+      {/* <div className="flex flex-row mx-6 px-4 justify-between mb-6"> */}
+      <div className="flex flex-col mx-2 mb-4">
+        <div className="flex item-center">
+          <FaHospitalUser className="relative text-teal-500 mr-2 h-6 w-6" />
+          <strong className="text-2xl text-teal-500 ">Admin Dashboard</strong>
         </div>
         <input
           type="text"
@@ -105,27 +102,29 @@ const AllHospitalData: React.FC = () => {
             setSearchQuery(e.target.value);
           }}
           placeholder="Enter name of Health Care, State, Address, ..."
-          className="w-1/2 px-8 rounded-md border border-teal-300 focus:outline-none focus:ring focus:border-teal-500"
+          className="w-full mt-4 px-4 py-2 rounded-md border border-teal-300 focus:outline-none focus:ring focus:border-teal-500"
         />
-        <Link to="/addHospital">
-          <button className="mr-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex">
-            Add Health Care{" "}
-            <IoMdAddCircle className="bg-inherit relative top-0.5 left-1 text-lg" />
+        <div className="flex justify-between my-4">
+          <Link to="/addHospital">
+            <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex">
+              Add Health Care{" "}
+              <IoMdAddCircle className=" bg-inherit relative top-0.5 left-1 text-lg" />
+            </button>
+          </Link>
+          <button
+            onClick={handleLogout}
+            className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5"
+          >
+            Logout
           </button>
-        </Link>
-        <button
-          onClick={handleLogout}
-          className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-        >
-          Logout
-        </button>
+        </div>
       </div>
 
       {loading && (
         <div role="status">
           <svg
             aria-hidden="true"
-            className="inline w-8 h-8 mx-10 text-gray-200 animate-spin dark:text-gray-600 fill-teal-500"
+            className="w-8 h-8 mx-auto animate-spin fill-teal-500"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +143,7 @@ const AllHospitalData: React.FC = () => {
       )}
       {error && <p className="text-normal text-red-600 mx-6 p-4">{error}</p>}
       {filteredResults.map((result) => (
-        <div key={result.id} className="mx-6 p-4 rounded-full">
+        <div key={result.id} className="mx-6 p-4 rounded-full mb-4">
           <strong className="block text-lg font-semibold text-gray-800">
             {result.name}
           </strong>

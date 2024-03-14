@@ -5,10 +5,8 @@ import MarkdownEditor from "../utils/markdown";
 import ImageUploader from "./image";
 import Dropdown from "./healthCare";
 import Pagination from "./pagination";
-// import firebase from "firebase/compat/app";
 import "firebase/firestore";
 import firebase from "firebase/compat/app";
-// import { Link } from "react-router-dom"
 import Popup from "./popup";
 
 interface hospitalData {
@@ -31,7 +29,6 @@ const HospitalList: React.FC = () => {
     markdown: "",
     country: "",
     region: "",
-    // image: null as File | null,
     image: "",
     telephone: "",
     healthCare: "",
@@ -39,7 +36,6 @@ const HospitalList: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Check if all required fields are filled, including markdown
     if (
       formData.name &&
       formData.address &&
@@ -108,58 +104,50 @@ const HospitalList: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row">
-      <div className="w-1/2 h-screen bg-teal-700">
-        <strong>careFinder</strong>
+    <div className="flex flex-col md:flex-row">
+      <div className="w-full md:w-1/2 h-screen bg-teal-700 flex justify-center items-center">
+        <strong className="text-white text-3xl">careFinder</strong>
       </div>
-      <div className="w-1/2 px-12 py-12">
-        <div className="flex py-4">
-          <strong className="text-2xl text-teal-500">
-            Health Care Information
-          </strong>
+      <div className="w-full md:w-1/2 px-4 py-8">
+        <div className="py-4">
+          <strong className="text-2xl text-teal-500">Health Care Information</strong>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-4">
           {currentPage === 1 && (
             <>
               <div className="flex flex-col">
-                <label htmlFor="name" className="text-sm">
-                  Hospital Name
-                </label>
+                <label htmlFor="name" className="text-sm">Hospital Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
+                  className="border-b border-teal-500 focus:border-teal-700 my-2 w-full focus:outline-none"
                   required
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="address" className="text-sm">
-                  Hospital Address
-                </label>
+                <label htmlFor="address" className="text-sm">Hospital Address</label>
                 <input
                   type="text"
                   id="address"
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
+                  className="border-b border-teal-500 focus:border-teal-700 my-2 w-full focus:outline-none"
                   required
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="hospitalEmail" className="text-sm">
-                  Hospital Email
-                </label>
+                <label htmlFor="hospitalEmail" className="text-sm">Hospital Email</label>
                 <input
                   type="text"
                   id="hospitalEmail"
                   name="hospitalEmail"
                   value={formData.hospitalEmail}
                   onChange={handleInputChange}
-                  className="border-b border-teal-500 focus:border-teal-700 my-2 w-3/4 focus:outline-none"
+                  className="border-b border-teal-500 focus:border-teal-700 my-2 w-full focus:outline-none"
                   required
                 />
               </div>
@@ -167,48 +155,29 @@ const HospitalList: React.FC = () => {
           )}
           {currentPage === 2 && (
             <>
-              <div>
-                <Telephone onChange={handlePhoneChange} value={"value"} />
-              </div>
-              <div className="flex flex-col">
-                <Dropdown onChange={handleHealthCareChange} />
-              </div>
-              <div>
-                <Country onChange={handleCountryChange} />
-              </div>
-              <div>
-                <ImageUploader
-                  onChange={function (): void {
-                    {
-                      handleImageUpload;
-                    }
-                  }}
-                />
-              </div>
+              <Telephone onChange={handlePhoneChange} value={formData.telephone} />
+              <Dropdown onChange={handleHealthCareChange} />
+              <Country onChange={handleCountryChange} />
+              <ImageUploader onChange={handleImageUpload} />
             </>
           )}
           {currentPage === 3 && (
             <>
-              <div>
-                <MarkdownEditor onChange={handleMarkdownChange} />
-              </div>
-            {/* <Link to="/data/:id"> */}
-              {/* <button
+              <MarkdownEditor onChange={handleMarkdownChange} />
+              <button
+                onClick={handleOpenPopup}
                 type="submit"
                 className="py-2 px-4 rounded my-4 bg-teal-500 text-white hover:bg-teal-700"
               >
                 Submit
-              </button> */}
-              {/* </Link> */}
-              <button onClick={handleOpenPopup} type="submit"
-                className="py-2 px-4 rounded my-4 bg-teal-500 text-white hover:bg-teal-700" >Submit</button>
-      {showPopup && (
-        <Popup
-          message="Health Care details submitted successfully"
-          onConfirm={handleClosePopup}
-          onCancel={handleClosePopup}
-        />
-      )}
+              </button>
+              {showPopup && (
+                <Popup
+                  message="Health Care details submitted successfully"
+                  onConfirm={handleClosePopup}
+                  onCancel={handleClosePopup}
+                />
+              )}
             </>
           )}
           <Pagination

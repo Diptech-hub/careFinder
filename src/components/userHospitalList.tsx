@@ -115,8 +115,8 @@ const SearchBar: React.FC = () => {
 
   return (
     <div className="container px-4 py-8">
-      <div className="flex flex-row mx-10 mb-6">
-        <strong className="text-2xl text-teal-500">CareFinder</strong>
+      <div className="flex flex-col mx-2 mb-4">
+        <strong className="text-2xl text-teal-500 mx-6 mb-4">CareFinder</strong>
         <input
           type="text"
           value={searchQuery}
@@ -125,14 +125,14 @@ const SearchBar: React.FC = () => {
             setSearchQuery(e.target.value);
           }}
           placeholder="Enter name of Health Care, State, Address, ..."
-          className="w-full mx-12 px-8 py-2 rounded-md border border-teal-300 focus:outline-none focus:ring focus:border-teal-500"
+          className="w-7/8 mx-6 px-4 py-2 rounded-md border border-teal-300 focus:outline-none focus:ring focus:border-teal-500"
         />
       </div>
 
-      <div className="flex my-4 justify-end mx-12">
+      <div className="flex my-4 justify-end mx-12 gap-2">
         <button
           onClick={downloadCSV}
-          className="mr-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
+          className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
         >
           <FaDownload className="bg-inherit relative top-0.5 right-1 text-lg" />{" "}
           Export Health Care
@@ -150,7 +150,7 @@ const SearchBar: React.FC = () => {
         <div role="status">
           <svg
             aria-hidden="true"
-            className="inline w-8 h-8 mx-10 text-gray-200 animate-spin dark:text-gray-600 fill-teal-500"
+            className="w-8 h-8 mx-auto animate-spin fill-teal-500"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +169,7 @@ const SearchBar: React.FC = () => {
       )}
       {error && <p className="text-normal text-red-600 mx-6 p-4">{error}</p>}
       {filteredResults.map((result) => (
-        <div key={result.id} className="mx-6 p-4 rounded-full">
+        <div key={result.id} className="mx-2 p-4 rounded-full">
           <strong className="block text-lg font-semibold text-gray-800">
             {result.name}
           </strong>

@@ -38,8 +38,8 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen ">
-      <div className="shadow-md rounded px-24 pt-6 pb-8 mb-4 w-1/2">
+    <div className="flex justify-center items-center min-h-screen ">
+      <div className="shadow-md rounded p-8 max-w-md w-full">
         <h2 className="text-teal-500 text-2xl mb-4 font-bold text-center">
           Login
         </h2>
@@ -87,10 +87,10 @@ const LoginPage: React.FC = () => {
           <p className="text-center my-4">OR</p>
           <div className="">
             <div className="flex flex-row justify-center gap-4">
-              <button className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/4">
+              <button className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/4">
                 <BiLogoGmail className="bg-inherit text-white" />
               </button>
-              <button className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/4">
+              <button className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/4">
                 <RiFacebookFill className="bg-inherit text-white" />
               </button>
             </div>
