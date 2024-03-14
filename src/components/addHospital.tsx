@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Telephone from "../utils/phoneNumber";
 import Country from "../utils/region";
 import MarkdownEditor from "../utils/markdown";
-import ImageUploader from "./image";
+// import ImageUploader from "./image";
 import Dropdown from "./healthCare";
 import Pagination from "./pagination";
 import "firebase/firestore";
@@ -85,9 +85,9 @@ const HospitalList: React.FC = () => {
     setFormData({ ...formData, healthCare });
   };
 
-  const handleImageUpload = (image: string) => {
-    setFormData({ ...formData, image });
-  };
+  // const handleImageUpload = (image: string) => {
+  //   setFormData({ ...formData, image });
+  // };
 
   const handleMarkdownChange = (markdown: string) => {
     setFormData({ ...formData, markdown });
@@ -158,7 +158,7 @@ const HospitalList: React.FC = () => {
               <Telephone onChange={handlePhoneChange} value={formData.telephone} />
               <Dropdown onChange={handleHealthCareChange} />
               <Country onChange={handleCountryChange} />
-              <ImageUploader onChange={handleImageUpload} />
+              {/* <ImageUploader onChange={handleImageUpload} /> */}
             </>
           )}
           {currentPage === 3 && (

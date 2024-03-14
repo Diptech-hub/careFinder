@@ -2,10 +2,10 @@ import med1 from "../assets/med1.svg";
 
 function About() {
   return (
-    <div className="flex flex-row my-20 p-6 mx-10">
-      <div className="w-1/2">
+    <div className="my-10 sm:my-20 px-6 sm:px-10 flex flex-col sm:flex-row">
+      <div className="sm:w-1/2">
         <strong className="text-2xl text-teal-500 text-center">About CareFinder</strong>
-        <p className="flex justify-left text-sm mt-6 font-normal leading-6">
+        <p className="text-sm mt-6 font-normal leading-6">
           At CareFinder, we understand the importance of accessible and quality
           healthcare, which is why we've dedicated ourselves to simplifying the
           process of finding hospitals and medical facilities in your area. With
@@ -20,13 +20,13 @@ function About() {
           time.
         </p>
       </div>
-      <div>
+      <div className="sm:ml-10 mt-6 sm:mt-0 flex justify-center">
         <img
           src={med1}
           height={400}
           width={400}
           alt="Medicine"
-          className="ml-40"
+          // className="w-64 h-auto"
         />
       </div>
     </div>

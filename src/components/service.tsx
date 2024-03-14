@@ -10,11 +10,11 @@ import { FaClinicMedical } from "react-icons/fa";
 
 function Service() {
   return (
-    <div className="my-20 p-6 mx-10">
+    <div className="my-10 sm:my-20 px-6 sm:px-10">
       <strong className="text-2xl text-teal-500">Our Services</strong>
-      <div className="flex flex-col">
+      <div className="flex flex-col ">
         <div>
-          <p className="flex justify-left text-sm mt-6 font-normal leading-6">
+          <p className="text-sm mt-6 font-normal leading-6">
             At CareFinder, we are dedicated to providing comprehensive
             healthcare solutions tailored to meet your needs. Our goal is to
             empower you with the tools and resources you need to make informed
@@ -23,7 +23,7 @@ function Service() {
           </p>
         </div>
         <div>
-          <div className="flex flex-row my-5 w-full items-start gap-4">
+          <div className="flex flex-wrap justify-center mt-6 sm:mt-0">
             <IconText text="Oncology" icon={LiaRibbonSolid} />
             <IconText text="Cardiology" icon={BsHeartPulse} />
             <IconText text="Fertility" icon={GrGrow} />
