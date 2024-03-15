@@ -26,19 +26,23 @@ const SearchBar: React.FC = () => {
         setError(null);
 
         const db = firebase.firestore();
-        let query: firebase.firestore.Query<firebase.firestore.DocumentData> =
+        const query: firebase.firestore.Query<firebase.firestore.DocumentData> =
           db.collection("formResponses");
 
-        if (searchQuery) {
-          query = query
-            .where("name", ">=", searchQuery)
-            .where("name", "<=", searchQuery + "\uf8ff")
-            .where("address", ">=", searchQuery)
-            .where("address", "<=", searchQuery + "\uf8ff")
-            .where("region", ">=", searchQuery)
-            .where("region", "<=", searchQuery + "\uf8ff")
-            .orderBy("name");
-        }
+        // if (searchQuery) {
+        //   query = query
+        //     .where("name", ">=", searchQuery)
+        //     .where("name", "<=", searchQuery + "\uf8ff")
+        //     .orderBy("name")
+        //     .where("address", ">=", searchQuery)
+        //     .where("address", "<=", searchQuery + "\uf8ff")
+        //     .orderBy("address")
+        //     .where("region", ">=", searchQuery)
+        //     .where("region", "<=", searchQuery + "\uf8ff")
+        //     .orderBy("region")
+        //     .startAt(searchQuery)
+        //     .endAt(searchQuery + "\uf8ff");
+        // }
 
         const querySnapshot = await query.get();
         const data: HospitalData[] = [];
@@ -93,20 +97,21 @@ const SearchBar: React.FC = () => {
 
   const shareDataViaFirebaseLink = async () => {
     try {
-      const db = firebase.firestore();
-      const querySnapshot = await db.collection("formResponses").get();
-      const data = querySnapshot.docs.map((doc) => doc.data());
+      const csvContent =
+        "Name,Address,Region,Email,Telephone\n" +
+        filteredResults
+          .map(
+            (result) =>
+              `${result.name},${result.address},${result.region},${result.hospitalEmail},${result.telephone}`
+          )
+          .join("\n");
 
-      const encodedData = encodeURIComponent(JSON.stringify(data));
-      const shareableLink = await firebase
-        .auth()
-        .currentUser?.getIdToken(true)
-        .then(
-          (token) =>
-            `https://example.com/share?data=${encodedData}&token=${token}`
-        );
+      const storageRef = firebase.storage().ref();
+      const csvRef = storageRef.child("hospital_data.csv");
+      await csvRef.putString(csvContent);
 
-      // Use shareableLink as needed, e.g., copy to clipboard or display to user
+      const shareableLink = await csvRef.getDownloadURL();
+
       console.log("Shareable link:", shareableLink);
     } catch (error) {
       console.error("Error generating shareable link:", error);
