@@ -8,6 +8,7 @@ import Pagination from "./pagination";
 import "firebase/firestore";
 import firebase from "firebase/compat/app";
 import Popup from "./popup";
+import healthLogin from "../assets/healthLogin.svg";
 
 interface hospitalData {
   name: string;
@@ -105,10 +106,19 @@ const HospitalList: React.FC = () => {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 h-screen bg-teal-700 flex justify-center items-center">
-        <strong className="text-white text-3xl">careFinder</strong>
+      <div className="w-full md:w-1/2 h-screen flex justify-center items-center">
+        {/* <strong className="text-white text-3xl">careFinder</strong> */}
+        <div className="sm:ml-10 mt-6 sm:mt-0 flex justify-center">
+        <img
+          src={healthLogin}
+          height={500}
+          width={500}
+          alt="Medicine"
+          // className="w-64 h-auto"
+        />
       </div>
-      <div className="w-full md:w-1/2 px-4 py-8">
+      </div>
+      <div className="w-full md:w-1/2 px-4 py-8 my-8">
         <div className="py-4">
           <strong className="text-2xl text-teal-500">Health Care Information</strong>
         </div>
