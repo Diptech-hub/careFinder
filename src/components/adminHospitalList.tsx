@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHospitalUser } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
+import { PiSignOutFill } from "react-icons/pi";
 import { auth } from "../utils/firebase";
 
 interface HospitalData {
@@ -113,9 +114,11 @@ const AllHospitalData: React.FC = () => {
           </Link>
           <button
             onClick={handleLogout}
-            className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5"
+            className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex"
           >
-            Logout
+             Sign Out
+            <PiSignOutFill className=" bg-inherit relative top-0.5 left-1 text-lg"/>
+           
           </button>
         </div>
       </div>

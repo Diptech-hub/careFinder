@@ -173,7 +173,7 @@ const HospitalList: React.FC = () => {
               </button>
               {showPopup && (
                 <Popup
-                  message="Health Care details submitted successfully"
+                  // message="Health Care details submitted successfully"
                   onConfirm={handleClosePopup}
                   onCancel={handleClosePopup}
                 />

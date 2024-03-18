@@ -7,7 +7,7 @@ import SignupPage from "./components/singUp";
 import HospitalList from "./components/addHospital";
 import FirestoreDataPage from "./components/adminHospitalList"
 import SearchBar from "./components/userHospitalList"
-
+import MarkdownEditor from "./utils/markdown2"
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
         <Route path="/addHospital" element={<HospitalList />} />
         <Route path="/data/:id" element={<FirestoreDataPage />} />
         <Route path="/search" element={<SearchBar />} />
+        <Route path="/review" element={<MarkdownEditor />} />
       </Routes>
     </div>
   );

@@ -3,6 +3,8 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { FaDownload } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
+import { FaPencilAlt } from "react-icons/fa";
+import { Link } from "react-router-dom"
 
 interface HospitalData {
   id: string;
@@ -28,21 +30,6 @@ const SearchBar: React.FC = () => {
         const db = firebase.firestore();
         const query: firebase.firestore.Query<firebase.firestore.DocumentData> =
           db.collection("formResponses");
-
-        // if (searchQuery) {
-        //   query = query
-        //     .where("name", ">=", searchQuery)
-        //     .where("name", "<=", searchQuery + "\uf8ff")
-        //     .orderBy("name")
-        //     .where("address", ">=", searchQuery)
-        //     .where("address", "<=", searchQuery + "\uf8ff")
-        //     .orderBy("address")
-        //     .where("region", ">=", searchQuery)
-        //     .where("region", "<=", searchQuery + "\uf8ff")
-        //     .orderBy("region")
-        //     .startAt(searchQuery)
-        //     .endAt(searchQuery + "\uf8ff");
-        // }
 
         const querySnapshot = await query.get();
         const data: HospitalData[] = [];
@@ -135,16 +122,17 @@ const SearchBar: React.FC = () => {
       </div>
 
       <div className="flex my-4 justify-end mx-12 gap-2">
+        <Link to="/review"><button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"><FaPencilAlt  className="bg-inherit relative top-0.5 right-1 text-lg"/>Review</button></Link>
         <button
           onClick={downloadCSV}
-          className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
         >
           <FaDownload className="bg-inherit relative top-0.5 right-1 text-lg" />{" "}
           Export Health Care
         </button>
         <button
           onClick={shareDataViaFirebaseLink}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
         >
           <IoIosShareAlt className="bg-inherit relative top-0.5 right-1 text-lg" />{" "}
           Share via Email
