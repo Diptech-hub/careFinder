@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Telephone from "../utils/phoneNumber";
 import Country from "../utils/region";
 import MarkdownEditor from "../utils/markdown";
-// import ImageUploader from "./image";
 import Dropdown from "./healthCare";
 import Pagination from "./pagination";
 import "firebase/firestore";
@@ -86,10 +85,6 @@ const HospitalList: React.FC = () => {
     setFormData({ ...formData, healthCare });
   };
 
-  // const handleImageUpload = (image: string) => {
-  //   setFormData({ ...formData, image });
-  // };
-
   const handleMarkdownChange = (markdown: string) => {
     setFormData({ ...formData, markdown });
   };
@@ -105,20 +100,11 @@ const HospitalList: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 h-screen flex justify-center items-center">
-        {/* <strong className="text-white text-3xl">careFinder</strong> */}
-        <div className="sm:ml-10 mt-6 sm:mt-0 flex justify-center">
-        <img
-          src={healthLogin}
-          height={500}
-          width={500}
-          alt="Medicine"
-          // className="w-64 h-auto"
-        />
+    <div className="flex flex-col sm:flex-row">
+      <div className="w-full sm:w-1/2 flex justify-center items-center mt-6 sm:mt-0">
+        <img src={healthLogin} height={500} width={500} alt="Medicine" />
       </div>
-      </div>
-      <div className="w-full md:w-1/2 px-4 py-8 my-8">
+      <div className="w-full sm:w-1/2 px-4 py-8">
         <div className="py-4">
           <strong className="text-2xl text-teal-500">Health Care Information</strong>
         </div>
@@ -168,7 +154,6 @@ const HospitalList: React.FC = () => {
               <Telephone onChange={handlePhoneChange} value={formData.telephone} />
               <Dropdown onChange={handleHealthCareChange} />
               <Country onChange={handleCountryChange} />
-              {/* <ImageUploader onChange={handleImageUpload} /> */}
             </>
           )}
           {currentPage === 3 && (
@@ -177,7 +162,7 @@ const HospitalList: React.FC = () => {
               <button
                 onClick={handleOpenPopup}
                 type="submit"
-                className="py-2 px-4 rounded my-4 bg-teal-500 text-white hover:bg-teal-700"
+                className="py-2 px-4 rounded bg-teal-500 text-white hover:bg-teal-700"
               >
                 Submit
               </button>

@@ -7,7 +7,7 @@ import SignupPage from "./components/singUp";
 import HospitalList from "./components/addHospital";
 import FirestoreDataPage from "./components/adminHospitalList"
 import SearchBar from "./components/userHospitalList"
-import MarkdownEditor from "./utils/markdown2"
+import MarkdownEditor from "./utils/review"
 
 function App() {
   return (

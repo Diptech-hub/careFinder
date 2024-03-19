@@ -38,8 +38,8 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen ">
-      <div className="shadow-md rounded p-8 max-w-md w-full">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-teal-300 to-teal-400">
+      <div className="shadow-md rounded-3xl p-8 max-w-md w-full">
         <h2 className="text-teal-500 text-2xl mb-4 font-bold text-center">
           Login
         </h2>
@@ -79,7 +79,7 @@ const LoginPage: React.FC = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+          className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline w-full"
         >
           {isSubmitting ? "Logging in..." : "Login"}
         </button>

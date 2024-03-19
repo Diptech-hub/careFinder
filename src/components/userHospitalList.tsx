@@ -4,7 +4,7 @@ import "firebase/compat/firestore";
 import { FaDownload } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { FaPencilAlt } from "react-icons/fa";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 interface HospitalData {
   id: string;
@@ -20,6 +20,9 @@ const SearchBar: React.FC = () => {
   const [searchResults, setSearchResults] = useState<HospitalData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [, setCSVData] = useState<string>("");
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +66,8 @@ const SearchBar: React.FC = () => {
       result.address.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+
+
   const downloadCSV = () => {
     const csvContent =
       "data:text/csv;charset=utf-8," +
@@ -70,10 +75,12 @@ const SearchBar: React.FC = () => {
       filteredResults
         .map(
           (result) =>
-            `${result.name},${result.address},${result.region},${result.hospitalEmail},${result.telephone}`
+            `"${result.name}","${result.address}","${result.region}","${result.hospitalEmail}","${result.telephone}"`
         )
         .join("\n");
-
+  
+    setCSVData(csvContent);
+  
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -82,29 +89,16 @@ const SearchBar: React.FC = () => {
     link.click();
   };
 
-  const shareDataViaFirebaseLink = async () => {
-    try {
-      const csvContent =
-        "Name,Address,Region,Email,Telephone\n" +
-        filteredResults
-          .map(
-            (result) =>
-              `${result.name},${result.address},${result.region},${result.hospitalEmail},${result.telephone}`
-          )
-          .join("\n");
+  const shareViaEmail = () => {
+    const subject = "Hospital Data CSV";
+    const body = "Attached is the hospital data CSV file.";
+    const uri = `mailto:?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}&attachment=hospital_data.csv`;
 
-      const storageRef = firebase.storage().ref();
-      const csvRef = storageRef.child("hospital_data.csv");
-      await csvRef.putString(csvContent);
-
-      const shareableLink = await csvRef.getDownloadURL();
-
-      console.log("Shareable link:", shareableLink);
-    } catch (error) {
-      console.error("Error generating shareable link:", error);
-    }
+    window.location.href = uri;
   };
-
+    
   return (
     <div className="container px-4 py-8">
       <div className="flex flex-col mx-2 mb-4">
@@ -122,7 +116,12 @@ const SearchBar: React.FC = () => {
       </div>
 
       <div className="flex my-4 justify-end mx-12 gap-2">
-        <Link to="/review"><button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"><FaPencilAlt  className="bg-inherit relative top-0.5 right-1 text-lg"/>Review</button></Link>
+        <Link to="/review">
+          <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex">
+            <FaPencilAlt className="bg-inherit relative top-0.5 right-1 text-lg" />
+            Review
+          </button>
+        </Link>
         <button
           onClick={downloadCSV}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
@@ -131,10 +130,10 @@ const SearchBar: React.FC = () => {
           Export Health Care
         </button>
         <button
-          onClick={shareDataViaFirebaseLink}
+          onClick={shareViaEmail}
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
         >
-          <IoIosShareAlt className="bg-inherit relative top-0.5 right-1 text-lg" />{" "}
+          <IoIosShareAlt  className="bg-inherit relative top-0.5 right-1 text-lg" />{" "}
           Share via Email
         </button>
       </div>
