@@ -6,6 +6,7 @@ import { IoIosShareAlt } from "react-icons/io";
 import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+
 interface HospitalData {
   id: string;
   name: string;
