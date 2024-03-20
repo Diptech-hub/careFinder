@@ -8,6 +8,7 @@ import HospitalList from "./components/addHospital";
 import FirestoreDataPage from "./components/adminHospitalList"
 import SearchBar from "./components/userHospitalList"
 import MarkdownEditor from "./utils/review"
+import AllHospitalData from "./components/adminHospitalList"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/data/:id" element={<FirestoreDataPage />} />
         <Route path="/search" element={<SearchBar />} />
         <Route path="/review" element={<MarkdownEditor />} />
+        <Route path="/admin" element={<AllHospitalData />} />
       </Routes>
     </div>
   );

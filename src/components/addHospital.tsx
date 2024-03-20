@@ -6,7 +6,7 @@ import Dropdown from "./healthCare";
 import Pagination from "./pagination";
 import "firebase/firestore";
 import firebase from "firebase/compat/app";
-import Popup from "./popup";
+import { Link } from "react-router-dom"
 import healthLogin from "../assets/healthLogin.svg";
 
 interface hospitalData {
@@ -89,15 +89,6 @@ const HospitalList: React.FC = () => {
     setFormData({ ...formData, markdown });
   };
 
-  const [showPopup, setShowPopup] = useState(false);
-
-  const handleOpenPopup = () => {
-    setShowPopup(true);
-  };
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
 
   return (
     <div className="flex flex-col sm:flex-row">
@@ -159,20 +150,14 @@ const HospitalList: React.FC = () => {
           {currentPage === 3 && (
             <>
               <MarkdownEditor onChange={handleMarkdownChange} />
+              <Link to='/admin'>
               <button
-                onClick={handleOpenPopup}
                 type="submit"
                 className="py-2 px-4 rounded bg-teal-500 text-white hover:bg-teal-700"
               >
                 Submit
               </button>
-              {showPopup && (
-                <Popup
-                  // message="Health Care details submitted successfully"
-                  onConfirm={handleClosePopup}
-                  onCancel={handleClosePopup}
-                />
-              )}
+              </Link>
             </>
           )}
           <Pagination
