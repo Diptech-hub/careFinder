@@ -97,17 +97,17 @@ const SearchBar: React.FC = () => {
   // };
 
   const shareViaEmail = () => {
-    // Assuming csvContent contains the CSV data
+    
     const csvContent =
       "Name,Address,Region,Email,Telephone\n" +
       filteredResults
-      .map(
-        (result) =>
-          `"${result.name}","${result.address}","${result.region}","${result.hospitalEmail}","${result.telephone}"`
-      )
-      .join("\n");
+        .map(
+          (result) =>
+            `"${result.name}","${result.address}","${result.region}","${result.hospitalEmail}","${result.telephone}"`
+        )
+        .join("\n");
 
-    const blob = new Blob([csvContent], { type: "text/csv" });
+    const blob = new Blob([csvContent], { type: "hospital_data.csv" });
 
     const url = URL.createObjectURL(blob);
 
@@ -121,8 +121,7 @@ const SearchBar: React.FC = () => {
     window.open(uri);
 
     URL.revokeObjectURL(url);
-};
-
+  };
 
   return (
     <div className="container px-4 py-8">
