@@ -5,6 +5,7 @@ import { FaDownload } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Footer from "./footer"
 
 interface HospitalData {
   id: string;
@@ -97,7 +98,7 @@ const SearchBar: React.FC = () => {
   // };
 
   const shareViaEmail = () => {
-    
+
     const csvContent =
       "Name,Address,Region,Email,Telephone\n" +
       filteredResults
@@ -124,9 +125,9 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <div className="container px-4 py-8">
+    <div className="container">
       <div className="flex flex-col mx-2 mb-4">
-        <strong className="text-2xl text-teal-500 mx-6 mb-4">CareFinder</strong>
+        <strong className="text-2xl text-teal-500 mx-6 mb-4 mt-4">CareFinder</strong>
         <input
           type="text"
           value={searchQuery}
@@ -185,7 +186,7 @@ const SearchBar: React.FC = () => {
       )}
       {error && <p className="text-normal text-red-600 mx-6 p-4">{error}</p>}
       {filteredResults.map((result) => (
-        <div key={result.id} className="mx-2 p-4 rounded-full">
+          <div key={result.id} className="mx-2 p-4 rounded-full  px-4 py-8">
           <strong className="block text-lg font-semibold text-gray-800">
             {result.name}
           </strong>
@@ -199,6 +200,7 @@ const SearchBar: React.FC = () => {
           ></div>
         </div>
       ))}
+      <Footer />
     </div>
   );
 };

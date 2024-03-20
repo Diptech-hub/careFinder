@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import Footer from "../components/footer"
 
 interface MarkdownEditorProps {
   onChange?: (markdown: string) => void;
@@ -82,7 +83,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ onChange }) => {
       </button>
       <div className="mt-8">
         <h2 className="text-2xl md:text-3xl text-teal-500 my-2">Reviews</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 mb-4 md:grid-cols-2 gap-4">
           {reviews.map((review, index) => (
             <div key={index} className="border border-teal-500 rounded-md p-4">
               <ReactMarkdown remarkPlugins={[gfm]}>{review}</ReactMarkdown>
@@ -90,6 +91,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ onChange }) => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

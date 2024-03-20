@@ -7,6 +7,7 @@ import { FaHospitalUser } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import { PiSignOutFill } from "react-icons/pi";
 import { auth } from "../utils/firebase";
+import Footer from "./footer"
 
 interface HospitalData {
   id: string;
@@ -82,7 +83,7 @@ const AllHospitalData: React.FC = () => {
       <div className="flex flex-col mx-2 mb-4">
         <div className="flex item-center">
           <FaHospitalUser className="relative text-teal-500 mr-2 h-6 w-6" />
-          <strong className="text-2xl text-teal-500 ">Admin Dashboard</strong>
+          <strong className="text-2xl text-teal-500">Admin Dashboard</strong>
         </div>
         <input
           type="text"
@@ -150,6 +151,7 @@ const AllHospitalData: React.FC = () => {
           ></div>
         </div>
       ))}
+      <Footer />
     </div>
   );
 };

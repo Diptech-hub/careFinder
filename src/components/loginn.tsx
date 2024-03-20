@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-teal-300 to-teal-400">
+    <div className="flex justify-center items-center min-h-screen">
       <div className="shadow-md rounded-3xl p-8 max-w-md w-full">
         <h2 className="text-teal-500 text-2xl mb-4 font-bold text-center">
           Login

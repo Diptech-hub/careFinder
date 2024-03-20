@@ -37,16 +37,16 @@ function Header() {
 
         <div className="hidden sm:flex flex-row gap-10 items-center">
           <Link to="#" className="hover:text-teal-500">
-            Lorem
+            About
           </Link>
           <Link to="#" className="hover:text-teal-500">
-            Lorem
+            Service
           </Link>
           <Link to="#" className="hover:text-teal-500">
-            Lorem
+            Contact
           </Link>
           <Link to="#" className="hover:text-teal-500">
-            Lorem
+            Career
           </Link>
         </div>
         <div className="hidden sm:flex flex-row gap-10 items-center">
@@ -56,16 +56,16 @@ function Header() {
       {isMenuOpen && (
         <div className="flex flex-col gap-4 mt-4 sm:hidden">
           <Link to="#" className="hover:text-teal-500">
-            Lorem
+            About
           </Link>
           <Link to="#" className="hover:text-teal-500">
-            Lorem
+            Service
           </Link>
           <Link to="#" className="hover:text-teal-500">
-            Lorem
+            Contact 
           </Link>
           <Link to="#" className="hover:text-teal-500">
-            Lorem
+            Career
           </Link>
           <DropdownMenu />
         </div>
@@ -75,6 +75,7 @@ function Header() {
           Find your nearest Health Care provider <br /> in just a few{" "}
           <span className="text-teal-500">clicks!</span>
         </h1>
+        <p className="text-center text-sm mt-4 font-normal">Keeping your body healthy is an expression of gratitude to the whole cosmos – the trees, the clouds, everything -Thich Nhat Hanh</p> 
         <p className="text-center text-sm mt-4 font-normal">
           We're here to help you simplify the process and connect you with the
           care you need...

@@ -12,13 +12,13 @@ function Footer() {
         <div className="bg-inherit mt-4 md:mt-0 md:w-1/3">
           <p className="bg-inherit font-bold mb-2">Menu</p>
           <a href="" className="bg-inherit block mb-1">
-            Lorem
+            About
           </a>
           <a href="" className="bg-inherit block mb-1">
-            Lorem
+            Service
           </a>
           <a href="" className="bg-inherit block mb-1">
-            Lorem
+            Career
           </a>
         </div>
         <div className="bg-inherit md:w-1/3 mt-4 md:mt-0">
