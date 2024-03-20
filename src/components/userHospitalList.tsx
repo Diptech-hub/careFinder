@@ -86,15 +86,43 @@ const SearchBar: React.FC = () => {
     link.click();
   };
 
+  // const shareViaEmail = () => {
+  //   const subject = "Hospital Data CSV";
+  //   const body = "Attached is the hospital data CSV file.";
+  //   const uri = `mailto:?subject=${encodeURIComponent(
+  //     subject
+  //   )}&body=${encodeURIComponent(body)}&attachment=hospital_data.csv`;
+
+  //   window.location.href = uri;
+  // };
+
   const shareViaEmail = () => {
+    // Assuming csvContent contains the CSV data
+    const csvContent =
+      "Name,Address,Region,Email,Telephone\n" +
+      filteredResults
+      .map(
+        (result) =>
+          `"${result.name}","${result.address}","${result.region}","${result.hospitalEmail}","${result.telephone}"`
+      )
+      .join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv" });
+
+    const url = URL.createObjectURL(blob);
+
     const subject = "Hospital Data CSV";
     const body = "Attached is the hospital data CSV file.";
+
     const uri = `mailto:?subject=${encodeURIComponent(
       subject
-    )}&body=${encodeURIComponent(body)}&attachment=hospital_data.csv`;
+    )}&body=${encodeURIComponent(body)}&attachment=${encodeURIComponent(url)}`;
 
-    window.location.href = uri;
-  };
+    window.open(uri);
+
+    URL.revokeObjectURL(url);
+};
+
 
   return (
     <div className="container px-4 py-8">
