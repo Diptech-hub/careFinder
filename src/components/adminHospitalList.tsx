@@ -30,19 +30,8 @@ const AllHospitalData: React.FC = () => {
         setError(null);
 
         const db = firebase.firestore();
-        let query: firebase.firestore.Query<firebase.firestore.DocumentData> =
+        const query: firebase.firestore.Query<firebase.firestore.DocumentData> =
           db.collection("formResponses");
-
-        if (searchQuery) {
-          query = query
-            .where("name", ">=", searchQuery)
-            .where("name", "<=", searchQuery + "\uf8ff")
-            .where("address", ">=", searchQuery)
-            .where("address", "<=", searchQuery + "\uf8ff")
-            .where("region", ">=", searchQuery)
-            .where("region", "<=", searchQuery + "\uf8ff")
-            .orderBy("name");
-        }
 
         const querySnapshot = await query.get();
         const data: HospitalData[] = [];

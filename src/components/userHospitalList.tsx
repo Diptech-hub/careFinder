@@ -6,7 +6,6 @@ import { IoIosShareAlt } from "react-icons/io";
 import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-
 interface HospitalData {
   id: string;
   name: string;
@@ -23,7 +22,6 @@ const SearchBar: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const [, setCSVData] = useState<string>("");
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,8 +65,6 @@ const SearchBar: React.FC = () => {
       result.address.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-
-
   const downloadCSV = () => {
     const csvContent =
       "data:text/csv;charset=utf-8," +
@@ -79,9 +75,9 @@ const SearchBar: React.FC = () => {
             `"${result.name}","${result.address}","${result.region}","${result.hospitalEmail}","${result.telephone}"`
         )
         .join("\n");
-  
+
     setCSVData(csvContent);
-  
+
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -99,7 +95,7 @@ const SearchBar: React.FC = () => {
 
     window.location.href = uri;
   };
-    
+
   return (
     <div className="container px-4 py-8">
       <div className="flex flex-col mx-2 mb-4">
@@ -134,7 +130,7 @@ const SearchBar: React.FC = () => {
           onClick={shareViaEmail}
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm inline-flex"
         >
-          <IoIosShareAlt  className="bg-inherit relative top-0.5 right-1 text-lg" />{" "}
+          <IoIosShareAlt className="bg-inherit relative top-0.5 right-1 text-lg" />{" "}
           Share via Email
         </button>
       </div>
