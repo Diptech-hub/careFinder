@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { RiFacebookFill } from "react-icons/ri";
 import { BiLogoGmail } from "react-icons/bi";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { auth } from "../utils/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, googleProvider } from "../utils/firebase";
+import { createUserWithEmailAndPassword,signInWithPopup  } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 
 // interface SignUpFormData {
@@ -41,6 +41,14 @@ const SignupPage: React.FC = () => {
       })
       .catch((error) => alert(error.message))
       .finally(() => setIsSubmitting(false));
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+    await signInWithPopup(auth,googleProvider);
+    } catch (err){
+      console.error(err);
+    }
   };
 
   return (
@@ -104,7 +112,7 @@ const SignupPage: React.FC = () => {
           <p className="text-center my-4">OR</p>
           <div className="">
             <div className="flex flex-row justify-center gap-4">
-              <button className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/4">
+              <button onClick={signInWithGoogle} className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/4">
                 <BiLogoGmail className="bg-inherit text-white" />
               </button>
               <button className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/4">
@@ -113,10 +121,8 @@ const SignupPage: React.FC = () => {
             </div>
             <p className="flex flex-row justify-center my-6 gap-4">
               Already have an Account{" "}
-              <Link to={`/Login`}>
-                <a href="" className="text-blue-500 hover:text-blue-700">
+              <Link to={`/Login`} className="text-blue-500 hover:text-blue-700">
                   Login
-                </a>
               </Link>
             </p>
           </div>

@@ -4,15 +4,11 @@ Carefinder is a simple tool that aims to help users find, export, and share hosp
 
 ## Features
 
-– **Hospital Search:** Users can input their location or select from a list of nearby cities to find hospitals in their area. The platform will list hospitals and their respective contact details, including address, phone number, and email.
-
-– **Export Hospitals:** Users are allowed to export the list of hospitals to a CSV file, making it easy to save and share the information.
-
-– **Share Hospitals:** Users are allowed to share the list of hospitals with others. Users can share the information via email or by generating a shareable link.
-
-– **User Authentication:** Carefinder requires admin users to create an account to access the platform’s admin features. It supports multiple authentication methods, including email/password and social media logins.
-
-– **Markdown Support:** Admin users are allowed to write content(create hospital entries and corresponding details) with a markdown. This feature makes it easy for users to format their content, add links, and insert images. Public users are aswell allowed to give reviews using a markdown editor
+- **Hospital Search:** Users can input their location or select from a list of nearby cities to find hospitals in their area. The platform will list hospitals and their respective contact details, including address, phone number, and email.
+- **Export Hospitals:** Users are allowed to export the list of hospitals to a CSV file, making it easy to save and share the information.
+- **Share Hospitals:** Users are allowed to share the list of hospitals with others. Users can share the information via email or by generating a shareable link.
+- **User Authentication:** Carefinder requires admin users to create an account to access the platform’s admin features. It supports multiple authentication methods, including email/password and social media logins.
+- **Markdown Support:** Admin users are allowed to write content(create hospital entries and corresponding details) with a markdown. This feature makes it easy for users to format their content, add links, and insert images. Public users are aswell allowed to give reviews using a markdown editor
 
 ## Technologies used
 
@@ -67,4 +63,3 @@ Carefinder is open-source software licensed under the MIT License. Feel free to 
 
 
 
-````

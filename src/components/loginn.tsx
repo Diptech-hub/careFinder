@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { RiFacebookFill } from "react-icons/ri";
 import { BiLogoGmail } from "react-icons/bi";
-import { auth } from "../utils/firebase";
-import { useNavigate, Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, googleProvider  } from "../utils/firebase";
+import { useNavigate, Link  } from "react-router-dom";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 // interface LoginFormData {
 //   email: string;
@@ -35,6 +35,15 @@ const LoginPage: React.FC = () => {
       })
       .catch((error) => alert(error.message))
       .finally(() => setIsSubmitting(false));
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+    await signInWithPopup(auth,googleProvider);
+    navigate("/data/:id");
+    } catch (err){
+      console.error(err);
+    }
   };
 
   return (
@@ -87,7 +96,7 @@ const LoginPage: React.FC = () => {
           <p className="text-center my-4">OR</p>
           <div className="">
             <div className="flex flex-row justify-center gap-4">
-              <button className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/4">
+              <button onClick={signInWithGoogle} className="bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/4">
                 <BiLogoGmail className="bg-inherit text-white" />
               </button>
               <button className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full sm:w-1/4">
@@ -96,10 +105,8 @@ const LoginPage: React.FC = () => {
             </div>
             <p className="flex flex-row justify-center my-6 gap-4">
               Create an Account{" "}
-              <Link to={`/Signup`}>
-                <a href="" className="text-blue-500 hover:text-blue-700">
+              <Link to={`/Signup`} className="text-blue-500 hover:text-blue-700">
                   Sign Up
-                </a>
               </Link>
             </p>
           </div>
@@ -110,3 +117,5 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
+
+
