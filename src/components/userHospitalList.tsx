@@ -5,7 +5,7 @@ import { FaDownload } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { FaPencilAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Footer from "./footer"
+import Footer from "./footer";
 
 interface HospitalData {
   id: string;
@@ -107,27 +107,37 @@ const SearchBar: React.FC = () => {
         )
         .join("\n");
 
+    setCSVData(csvContent);
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "hospital_data.csv");
+    document.body.appendChild(link);
+    link.click();
+
+    const blob = new Blob([csvContent], { type: "hospital_data.csv" });
+
+    const url = URL.createObjectURL(blob);
+
     const subject = "Hospital Data CSV";
-    const body = "Attached is the hospital data CSV file.";
+    const body = "Attach the downloaded CSV File.";
 
-    // Encode the CSV content as Base64
-    const csvBase64Content = btoa(csvContent);
-
-    // Construct the mailto URI with the attachment included in the body
     const uri = `mailto:?subject=${encodeURIComponent(
       subject
-    )}&body=${encodeURIComponent(
-      `${body}\n\n${csvBase64Content}`
-    )}`;
+    )}&body=${encodeURIComponent(body)}&attachment=${encodeURIComponent(url)}`;
 
     window.open(uri);
-};
 
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="container">
       <div className="flex flex-col mx-2 mb-4">
-        <strong className="text-2xl text-teal-500 mx-6 mb-4 mt-4">CareFinder</strong>
+        <strong className="text-2xl text-teal-500 mx-6 mb-4 mt-4">
+          CareFinder
+        </strong>
         <input
           type="text"
           value={searchQuery}
@@ -186,7 +196,7 @@ const SearchBar: React.FC = () => {
       )}
       {error && <p className="text-normal text-red-600 mx-6 p-4">{error}</p>}
       {filteredResults.map((result) => (
-          <div key={result.id} className="mx-2 p-4 rounded-full  px-4 py-8">
+        <div key={result.id} className="mx-2 p-4 rounded-full  px-4 py-8">
           <strong className="block text-lg font-semibold text-gray-800">
             {result.name}
           </strong>
