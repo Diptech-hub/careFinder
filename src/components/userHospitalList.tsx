@@ -98,7 +98,6 @@ const SearchBar: React.FC = () => {
   // };
 
   const shareViaEmail = () => {
-
     const csvContent =
       "Name,Address,Region,Email,Telephone\n" +
       filteredResults
@@ -108,21 +107,22 @@ const SearchBar: React.FC = () => {
         )
         .join("\n");
 
-    const blob = new Blob([csvContent], { type: "hospital_data.csv" });
-
-    const url = URL.createObjectURL(blob);
-
     const subject = "Hospital Data CSV";
     const body = "Attached is the hospital data CSV file.";
 
+    // Encode the CSV content as Base64
+    const csvBase64Content = btoa(csvContent);
+
+    // Construct the mailto URI with the attachment included in the body
     const uri = `mailto:?subject=${encodeURIComponent(
       subject
-    )}&body=${encodeURIComponent(body)}&attachment=${encodeURIComponent(url)}`;
+    )}&body=${encodeURIComponent(
+      `${body}\n\n${csvBase64Content}`
+    )}`;
 
     window.open(uri);
+};
 
-    URL.revokeObjectURL(url);
-  };
 
   return (
     <div className="container">
